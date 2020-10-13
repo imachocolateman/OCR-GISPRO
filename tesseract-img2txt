@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# A script to run 'tesseract Images/[a] Text/[a]' for every a in Images
+# Must have 2 directories 'Images', 'Text'. And this file must reside in containing directory
+
+echo "Begin"
+
+SOURCEDIR=./Images/
+DESTDIR=./Text/
+
+for filename in $SOURCEDIR*.jpg; do
+	filepath="$filename"
+	file=${filepath##*/}
+	file="${file%.*}"
+	echo $file
+	echo "------------------"
+	tesseract ${filepath} ${DESTDIR}${file}
+	echo "------------------"
+done
+
+exit
